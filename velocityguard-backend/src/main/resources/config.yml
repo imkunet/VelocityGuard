@@ -1,0 +1,8 @@
+# Put the allowed authentication tokens in the list below
+
+allowed-tokens:
+  - "you can put as many as you'd like!"
+  - "feel free to put multiple entries"
+
+# The below message will be shown when a player has been removed for having an invalid token.
+removal-message: "&cYour connection was not authenticated properly"

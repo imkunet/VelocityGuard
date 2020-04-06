@@ -1,0 +1,5 @@
+name: VelocityGuard
+main: us.kunet.velocityguard.backend.VelocityGuardBackendPlugin
+version: "1.0"
+author: KuNet
+description: Verify the connections between Velocity and Spigot
