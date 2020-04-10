@@ -1,4 +1,6 @@
 # VelocityGuard
+![VelocityGuard CI with Maven + Spigot](https://github.com/orion-tran/VelocityGuard/workflows/VelocityGuard%20CI%20with%20Maven%20+%20Spigot/badge.svg?branch=master)
+
 VelocityGuard is a port of the amazing plugin 
 [BungeeGuard](https://github.com/lucko/BungeeGuard) and functions the same way.
 VelocityGuard is a pair of plugins that uses the GameProfile of a player to
@@ -13,6 +15,9 @@ verify whether a player is connected from a trusted Velocity instance or not.
 
 What all of this does is it allows absolutely no one to join (even through a
 proxy server) without knowing a correct, authorized token.
+
+## Download
+Head over to the `Actions` tab at the top of [VelocityGuard's repository](https://github.com/orion-tran/VelocityGuard/) and open the latest one with a check mark. From there there should be an `Artifacts` section with a link to download the zip file containing the jars.
 
 ## Installation
 
