@@ -20,7 +20,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
       - name: Copy artifacts
-        run: mkdir artifacts && cp velocityguard-backend/target/velocityguard-backend.jar artifacts/velocity-backend.jar && cp velocityguard-proxy/target/velocityguard-proxy.jar artifacts/velocity-proxy.jar
+        run: mkdir artifacts && cp velocityguard-backend/target/velocityguard-backend.jar artifacts/velocityguard-backend.jar && cp velocityguard-proxy/target/velocityguard-proxy.jar artifacts/velocityguard-proxy.jar
       - name: Upload artifacts
         uses: actions/upload-artifact@v1.0.0
         with:
