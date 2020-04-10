@@ -14,8 +14,12 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.logging.Level;
 
 public class VelocityGuardBackendPlugin extends JavaPlugin {
+
+    // Reflection methods adapted from https://github.com/lucko/commodore/blob/master/src/main/java/me/lucko/commodore/ReflectionUtil.java
+    // licensed under MIT, refer to License.txt
 
     private List<String> allowedTokens;
     private String removalMessage;
@@ -42,12 +46,13 @@ public class VelocityGuardBackendPlugin extends JavaPlugin {
 
 class PreLoginListener implements Listener {
 
-    private VelocityGuardBackendPlugin velocityGuardBackendPlugin;
+    private final VelocityGuardBackendPlugin velocityGuardBackendPlugin;
 
     PreLoginListener(VelocityGuardBackendPlugin plugin) {
         this.velocityGuardBackendPlugin = plugin;
     }
 
+    private static final String SERVER_VERSION = getServerVersion();
     private static Method getHandle;
     private static Method getProfile;
     static {
@@ -56,6 +61,21 @@ class PreLoginListener implements Listener {
             getProfile = getEntityHumanClass().getDeclaredMethod("getProfile");
         } catch (NoSuchMethodException | ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    @NotNull
+    private static String getServerVersion() {
+        Class<?> server = Bukkit.getServer().getClass();
+        if (!server.getSimpleName().equals("CraftServer")) {
+            return ".";
+        }
+        if (server.getName().equals("org.bukkit.craftbukkit.CraftServer")) {
+            // Non versioned class
+            return ".";
+        } else {
+            String version = server.getName().substring("org.bukkit.craftbukkit".length());
+            return version.substring(0, version.length() - "CraftServer".length());
         }
     }
 
@@ -82,21 +102,22 @@ class PreLoginListener implements Listener {
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
+            velocityGuardBackendPlugin.getLogger().log(Level.SEVERE, "YOUR SERVER IS IN DANGER! " +
+                    "VelocityGuard doesn't seem to be working, please reach out for support!");
+
+            event.disallow(PlayerLoginEvent.Result.KICK_OTHER, ChatColor
+                    .translateAlternateColorCodes('&', "&cPlease contact server admins"));
         }
     }
 
     // Thanks to Leymooo on the Velocity Discord for providing code for reflection https://github.com/Leymooo
+    // Thanks to mikroskeem on the Velocity Discord for suggesting support for relocation support.
 
-    private static String getVersion() {
-        return Bukkit.getServer().getClass().getPackage().getName()
-                .replace(".", ",").split(",")[3];
+    private static @NotNull Class<?> getCraftPlayerClass() throws ClassNotFoundException {
+        return Class.forName("org.bukkit.craftbukkit" + SERVER_VERSION + "entity.CraftPlayer");
     }
 
-    private static Class<?> getCraftPlayerClass() throws ClassNotFoundException {
-        return Class.forName("org.bukkit.craftbukkit." + getVersion() + "." + "entity.CraftPlayer");
-    }
-
-    private static Class<?> getEntityHumanClass() throws ClassNotFoundException {
-        return Class.forName("net.minecraft.server." + getVersion() + "." + "EntityHuman");
+    private static @NotNull Class<?> getEntityHumanClass() throws ClassNotFoundException {
+        return Class.forName("net.minecraft.server" + SERVER_VERSION + "EntityHuman");
     }
 }
