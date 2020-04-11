@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Plugin(id = "velocityguard", name = "VelocityGuard", version = "1.0",
-        description = "Verify the connections between Velocity and Spigot", authors = {"KuNet"})
+        description = "Verify the connections between Velocity and Servers", authors = {"KuNet"})
 public class VelocityGuardProxyPlugin {
 
     // characters used to build a token
@@ -37,8 +37,8 @@ public class VelocityGuardProxyPlugin {
         return sb.toString();
     }
 
-    private Logger logger;
-    private Path configDirectory;
+    private final Logger logger;
+    private final Path configDirectory;
     private String token;
 
     @Inject

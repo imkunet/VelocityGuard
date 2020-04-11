@@ -98,7 +98,7 @@ class PreLoginListener implements Listener {
 
                 velocityGuardBackendPlugin.getLogger().warning("Denied connection from "
                         + event.getPlayer().getName() + " (" + event.getPlayer().getUniqueId() + ") @ "
-                        + event.getAddress().getHostName() + " - Invalid token in their properties.");
+                        + event.getAddress() + " - Invalid token in their properties.");
             }
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

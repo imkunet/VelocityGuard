@@ -49,10 +49,6 @@
             <id>velocity</id>
             <url>https://repo.velocitypowered.com/snapshots/</url>
         </repository>
-        <repository>
-            <id>sponge</id>
-            <url>https://repo.spongepowered.org/maven/</url>
-        </repository>
     </repositories>
 
     <dependencies>
