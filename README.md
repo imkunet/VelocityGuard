@@ -16,6 +16,13 @@ verify whether a player is connected from a trusted Velocity instance or not.
 What all of this does is it allows absolutely no one to join (even through a
 proxy server) without knowing a correct, authorized token.
 
+## Common issues (read this before continuing)
+* **Please don't confuse VelocityGuard with Velocity's built in modern forwarding, VelocityGuard is meant to solve a completely different problem**
+
+* The best way to have VelocityGuard set up is to have your Velocity instance have it's forwarding mode set to `legacy` and have your backend server's `bungeecord` mode enabled.
+
+* If you're using PaperSpigot please do **NOT** use the `paper.yml` `velocity-support` configuration entry as it's not the same thing as VelocityGuard.
+
 ## Download
 Head over to the `Actions` tab at the top of [VelocityGuard's repository](https://github.com/orion-tran/VelocityGuard/) and open the latest one with a check mark. From there there should be an `Artifacts` section with a link to download the zip file containing the jars.
 
@@ -51,3 +58,5 @@ Head over to the `Actions` tab at the top of [VelocityGuard's repository](https:
    ```
 
 4. Restart the server.
+
+**Please don’t ask the Velocity Discord for help, this is not an official velocity-made plugin so they cannot offer the same level of support**
