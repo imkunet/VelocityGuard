@@ -24,7 +24,7 @@ proxy server) without knowing a correct, authorized token.
 * If you're using PaperSpigot please do **NOT** use the `paper.yml` `velocity-support` configuration entry as it's not the same thing as VelocityGuard.
 
 ## Download
-Head over to the `Actions` tab at the top of [VelocityGuard's repository](https://github.com/orion-tran/VelocityGuard/) and open the latest one with a check mark. From there there should be an `Artifacts` section with a link to download the zip file containing the jars.
+Download the latest release of VelocityGuard through the releases tab in GitHub!
 
 ## Installation
 
